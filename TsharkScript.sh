@@ -24,3 +24,5 @@
 # [ --disable-heuristic <short_name> ] [ <capture filter> ]
 
 # tshark -G [ <report type> ]
+
+# full : https://www.cellstream.com/reference-reading/tipsandtricks/272-t-shark-usage-examples
