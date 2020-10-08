@@ -21,8 +21,8 @@ case "$option" in
 
 		for (( i=1; i <= $numFiles1; i++))
 		do
-			sudo chmod 777 /media/mpec/41d469bf-0ae0-497b-8de4-26cd1650d337
-			tshark -i $interface1 -a duration:$_time -w /media/mpec/41d469bf-0ae0-497b-8de4-26cd1650d337/time"$i".pcap
+			sudo chmod 777 /media/mpec/eb38a860-81a7-43f8-9205-6df6e098435f
+			tshark -i $interface1 -a duration:$_time -w /media/mpec/eb38a860-81a7-43f8-9205-6df6e098435f/timeTest"$i".pcap
 			#tcpdump -i $interface1  -G $_time tcp -w /home/mpec/DoanDuong/DataCaptured/CapByTime/time"$i".pcap
 
 			echo "Done $i"

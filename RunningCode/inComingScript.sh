@@ -31,7 +31,7 @@ do
     for file in $numFiles;
     do
         echo "Read $file"
-        tshark -r /media/mpec/eb38a860-81a7-43f8-9205-6df6e098435f/HUST_DATA/inCom_outGo_$i/inCom/$file -T fields -e frame.time -e ip.src -e ip.dst -e tcp.srcport -e tcp.dstport -e udp.srcport -e udp.dstport -e frame.len -e ip.proto -e tcp.flags.syn -E header=y -E separator=, -E occurrence=f > /home/mpec/DoanDuong/CsvData/file_$i/outGoing$file.csv
+        tshark -r /media/mpec/eb38a860-81a7-43f8-9205-6df6e098435f/HUST_DATA/inCom_outGo_$i/inCom/$file -T fields -e ip.src -e ip.dst -e tcp.srcport -e tcp.dstport -e udp.srcport -e udp.dstport -e frame.len -e ip.proto -e tcp.flags.syn -E header=y -E separator=, -E occurrence=f > /home/mpec/DoanDuong/CsvData/file_$i/outGoing$file.csv
         echo "Done $file"
     done
     echo "Done file $i"
