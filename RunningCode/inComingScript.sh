@@ -5,10 +5,11 @@
 
 # tcpdump -r /home/mpec/DoanDuong/DataCaptured/CapByTime/time1.pcap -w /home/mpec/DoanDuong/CsvData/test1.pcap "tcp"
 
-sudo chmod 777 /media/mpec/eb38a860-81a7-43f8-9205-6df6e098435f
+sudo chmod 777 $location
 
 read -p "Enter the number of begin file: " beginFile
 read -p "Enter the number of end file: " endFile
+read -p "Enter location: " location
  
 function countNumfiles {
 PYTHON_ARG="$1" python3 - <<END
@@ -23,15 +24,16 @@ END
 for (( i = $beginFile; i <= $endFile; i++)) 
 do
     echo "Processing file $i"
-    # tcpdump -r /media/mpec/eb38a860-81a7-43f8-9205-6df6e098435f/file_cap_$i.pcap -w /media/mpec/eb38a860-81a7-43f8-9205-6df6e098435f/HUST_DATA/inCom_outGo_$i/outGoing$i.pcap src net 10.133 or 10.134 or 192.168
-    editcap -i 130 /media/mpec/eb38a860-81a7-43f8-9205-6df6e098435f/HUST_DATA/inCom_outGo_$i/inComing$i.pcap /media/mpec/eb38a860-81a7-43f8-9205-6df6e098435f/HUST_DATA/inCom_outGo_$i/inCom/inCom$i
+    tcpdump -r $location/file_cap_$i.pcap -w $location/HUST_DATA/inCom_outGo_$i/inComing$i.pcap dst net 10.133 or 10.134 or 192.168
+    echo "Done filtering file $i"
+    editcap -i 130 $location/HUST_DATA/inCom_outGo_$i/inComing$i.pcap $location/HUST_DATA/inCom_outGo_$i/inCom/inCom$i
 
 
-    numFiles=$(countNumfiles /media/mpec/eb38a860-81a7-43f8-9205-6df6e098435f/HUST_DATA/inCom_outGo_$i/inCom)
+    numFiles=$(countNumfiles $location/HUST_DATA/inCom_outGo_$i/inCom)
     for file in $numFiles;
     do
         echo "Read $file"
-        tshark -r /media/mpec/eb38a860-81a7-43f8-9205-6df6e098435f/HUST_DATA/inCom_outGo_$i/inCom/$file -T fields -e ip.src -e ip.dst -e tcp.srcport -e tcp.dstport -e udp.srcport -e udp.dstport -e frame.len -e ip.proto -e tcp.flags.syn -E header=y -E separator=, -E occurrence=f > /home/mpec/DoanDuong/CsvData/file_$i/outGoing$file.csv
+        tshark -r $location/HUST_DATA/inCom_outGo_$i/inCom/$file -T fields -e ip.src -e ip.dst -e tcp.srcport -e tcp.dstport -e udp.srcport -e udp.dstport -e frame.len -e ip.proto -e tcp.flags.syn -E header=y -E separator=, -E occurrence=f > $location/file_$i/inComing$i/$file.csv
         echo "Done $file"
     done
     echo "Done file $i"
