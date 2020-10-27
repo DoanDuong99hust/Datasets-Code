@@ -8,8 +8,24 @@ for ((i=$beginFile ; i <= $endFile ; i++))
 do
     sudo chmod 777 $location
     echo "Creating folder $i"
-    mkdir -p $location/file_$i/outGoing$i
-    cd /$location/file_$i
+    mkdir -p $location/file_$i/pcap_data
+    cd /$location/file_$i/pcap_data
     mkdir -p inComing$i
+    mkdir -p OutGoing$i
+    mkdir -p filterLocalTraffic$i
+    cd /$location/file_$i/pcap_data/filterLocalTraffic$i
+    mkdir -p inComing$i
+    mkdir -p outGoing$i
+
+    mkdir -p $location/file_$i/csv_data
+    cd /$location/file_$i/csv_data
+    mkdir -p inComing$i
+    mkdir -p OutGoing$i
+    mkdir -p filterLocalTraffic$i
+    cd /$location/file_$i/csv_data/filterLocalTraffic$i
+    mkdir -p inComing$i
+    mkdir -p outGoing$i
+
+
     echo "Create folder successfully!"
 done

@@ -21,8 +21,7 @@ case "$option" in
 
 		for (( i=1; i <= $numFiles1; i++))
 		do
-			sudo chmod 777 /media/mpec/b6987108-c8f8-45a2-9fab-57633a327467
-			tshark -i $interface1 -a duration:$_time -w /media/mpec/b6987108-c8f8-45a2-9fab-57633a327467/timeTest"$i".pcap
+			tshark -i $interface1 -a duration:$_time -w /home/admin123/DoanDuong/TestData/by_time/timeTest"$i".pcap
 			#tcpdump -i $interface1  -G $_time tcp -w /home/mpec/DoanDuong/DataCaptured/CapByTime/time"$i".pcap
 
 			echo "Done $i"
@@ -35,7 +34,7 @@ case "$option" in
 		read -p "Interface: " interface2
 		echo "Started capture $numFiles2 files by $_size kB in $interface2"
 
-		tshark -i $interface2 -b filesize:$_size -a files:$numFiles2 -w /home/mpec/DoanDuong/DataCaptured/CapBySize/size.pcap	
+		tshark -i $interface2 -b filesize:$_size -a files:$numFiles2 -w /home/admin123/DoanDuong/TestData/by_size/size.pcap
 	;;
 #Capture by packet
 	3 )
@@ -45,8 +44,8 @@ case "$option" in
 		echo "Started capture $numFiles3 files by $_packets packets in $interface3"
 		for (( i=1; i <= $numFiles3; i++ )) 
 		do
-			# tshark -i $interface3 -c $_packets -w /home/mpec/DoanDuong/DataCaptured/CapByPacket/packets"$i".pcap	
-			tcpdump -i $interface3 -c $_packets tcp -w /home/mpec/DoanDuong/DataCaptured/CapByPacket/packets"$i".pcap
+			 tshark -i $interface3 -c $_packets -w /home/mpec/DoanDuong/DataCaptured/CapByPacket/packets"$i".pcap
+#			tcpdump -i $interface3 -c $_packets tcp -w /home/mpec/DoanDuong/DataCaptured/CapByPacket/packets"$i".pcap
 			echo "Done $i"
 		done
 	;;
