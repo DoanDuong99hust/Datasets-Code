@@ -53,7 +53,7 @@ def create_dictionary_ip_bytes(list_arr) :
 path = '/home/doanduong/DoanDuong/csv_data/testfile.csv'
 list_data = create_2D_array_data(path)
 dic_data = create_dictionary_ip_bytes(list_data)
-print(sorted((dic_data.items()),key=lambda x: x[1], reverse=True))
+print(sorted((dic_data.iDtems()),key=lambda x: x[1], reverse=True))
 # plt.scatter(dic_data.keys(),dic_data.values())  # Matplotlib
 # plt.xlabel("IP")
 # plt.ylabel("Bytes/s")
